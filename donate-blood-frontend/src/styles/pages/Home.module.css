@@ -1,0 +1,28 @@
+.container {
+  /* height: 100vh; */
+  max-width: 992px;
+  margin: 0  auto;
+  padding:  2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* .leftContainer {
+
+} */
+
+.container section {
+  display: flex;
+  flex-direction: column;
+
+  /* height: 100vh; */
+
+  margin: 0 auto;
+
+  /*LARGURA: limites dos elementos na página*/
+  width: 90%;
+  max-width: 600px;
+  border: none;
+
+  font-weight: bold;
+}

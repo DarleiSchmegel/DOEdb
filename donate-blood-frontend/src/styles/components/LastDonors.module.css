@@ -1,0 +1,58 @@
+.lastDonorsContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.lastDonorsContainer h2{
+  color: #F2F3F5;
+  margin: 40px 0;
+} 
+.lastDonorsContainer h2{
+  color: #F2F3F5;
+  margin-bottom: 40px;
+} 
+
+.lastDonorsContainer .donors {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: auto;
+}
+
+.blood {
+  color: #ff4f4f;
+  font-weight: bold;
+  font-size: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  
+}
+.blood::before {
+  content: "";
+  background-color: #ff4f4f11;
+
+  width: 40px;
+  height: 40px;
+
+  position: absolute;
+
+  /* fazer a gotinha */
+  border-radius: 50%;
+  border-top-right-radius: 0;
+
+  transform: rotate(-45deg);   
+}
+
+.donor {
+  text-align: center;
+  height: max-content;
+}
+
+.donor p {
+  color: #e9a6a6;
+  margin-top: 24px;
+  font-size: 14px;
+  margin-bottom: 64px;
+}

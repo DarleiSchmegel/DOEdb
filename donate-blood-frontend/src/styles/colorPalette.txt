@@ -1,0 +1,9 @@
+#ff4f4f;
+backgrounf: #2E384D;
+#ff4f4f11;
+#e9a6a6
+text:#F2F3F5
+#ffffffee;
+border: 1px #ffffff88 solid;
+#ffffffaa;
+#ffffffee;

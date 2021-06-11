@@ -1,0 +1,47 @@
+.introBoxConatainer {
+
+    /*espaçamentos com margin
+  margin-bottom: 70px;
+  */
+ 
+  /*LARGURA: limites dos elementos na página
+  margin-right: auto;
+  margin-left: auto;
+  */
+  /*topo raight baixo left
+  margin: 0 auto 70px auto;*/
+  margin: 0 40px;
+
+  /*LARGURA: limites dos elementos na página*/
+  width: 85%;
+  max-width: 500px;
+  border: none;
+
+  font-weight: bold;
+
+  text-align: center;
+}
+
+.introBoxConatainer h2 {
+  color: #F2F3F5;
+  margin-bottom: 70px;
+}
+
+.introBoxConatainer button {
+  margin-top: 16px;
+  padding: 8px 16px;
+  border-radius: 4px;
+
+  background-color: #ff4f4f;
+  color: white;
+}
+
+.introBoxConatainer img {
+  width: 120px;
+  margin: 70px 0;
+}
+
+.introBoxConatainer p {
+  color: #F2F3F5;
+  font-size: 14px;
+}

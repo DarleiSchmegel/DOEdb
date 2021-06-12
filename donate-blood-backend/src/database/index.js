@@ -1,5 +1,5 @@
-//const pg = require('pg');
-import pg from 'pg';
+const pg = require('pg');
+//import pg from 'pg';
 
 /*
 
@@ -104,10 +104,8 @@ function queryDatabase() {
       });
 }
 
-
-
-
-export { Client };
+//export { Client };
+module.exports = Client;
 
 
 

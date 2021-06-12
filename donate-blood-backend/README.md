@@ -29,7 +29,7 @@
   - Crie a Base de Dados usada no projeto
     - CREATE DATABASE DOEDB;
 
-  - Se tudo deu certo abra um terminal na raiz do projeto instale todas as dependncias e execute *yarn dev*
+  - Se tudo deu certo abra um terminal na raiz do projeto instale todas as dependencias e execute *yarn dev*
 
 
 

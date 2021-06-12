@@ -1,13 +1,13 @@
 // import * as dotenv from "dotenv";
 // dotenv.config({ path: __dirname+'/.env' });
 
-//import 'dotenv/config'
-require('dotenv/config');
+import 'dotenv/config'
+//require('dotenv/config');
 
-//import { express } from "express"
-const express = require('express');
-const router = require("./routes.js");
-//import { router } from "./routes.js"
+import  express  from "express"
+//const express = require('express');
+//const router = require("./routes.js");
+import { router } from "./routes.js"
 
 const app = express();
 

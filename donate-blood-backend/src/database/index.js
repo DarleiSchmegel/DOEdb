@@ -1,5 +1,5 @@
-const pg = require('pg');
-//import pg from 'pg';
+//const pg = require('pg');
+import pg from 'pg';
 
 /*
 
@@ -38,7 +38,7 @@ function queryDatabase() {
       DROP TABLE IF EXISTS doador;
       CREATE TABLE doador ( cpf VARCHAR(15) NOT NULL PRIMARY KEY, nome VARCHAR(50) NOT NULL, tipo_sangue VARCHAR(3) NOT NULL, telefone VARCHAR(13), email VARCHAR(50) UNIQUE NOT NULL, senha VARCHAR(50) NOT NULL, qtd_doacoes INTEGER default 0);
       INSERT INTO doador ( cpf, nome, tipo_sangue, telefone, email, senha ) VALUES ( '03329452003', 'Darlei Matheus Schmegel', 'O+', '5189007766', 'darlei@gmail.com', '0000');
-      INSERT INTO doador ( cpf, nome, tipo_sangue, telefone, email, senha ) VALUES ( '01123698702', 'Bernardo Ribeiro Beling', 'AB+', '539076566', 'bernardo@gmail.com', '1111');    
+      INSERT INTO doador ( cpf, nome, tipo_sangue, telefone, email, senha ) VALUES ( '03969000033', 'Bernardo Ribeiro Beling', 'O-', '53981012573', 'bernardo@gmail.com', 'senha');    
       
       CREATE TABLE funcionario ( 
         ssn VARCHAR(6) NOT NULL PRIMARY KEY, 
@@ -87,7 +87,7 @@ function queryDatabase() {
       INSERT INTO vinculacao (id, cpf) 
         VALUES (1,'03329452003');
       INSERT INTO vinculacao (id, cpf) 
-        VALUES (2,'01123698702');
+        VALUES (2,'03969000033');
 
   `;
 
@@ -104,8 +104,8 @@ function queryDatabase() {
       });
 }
 
-//export { Client };
-module.exports = Client;
+export { Client };
+//module.exports = Client;
 
 
 

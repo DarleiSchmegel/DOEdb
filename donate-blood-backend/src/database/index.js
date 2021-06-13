@@ -29,16 +29,25 @@ function queryDatabase() {
       DROP TABLE IF EXISTS vinculacao;
       DROP TABLE IF EXISTS funcionario;
       DROP TABLE IF EXISTS estoque;
+      DROP TABLE IF EXISTS sala_possui_funcionamento;
+      DROP TABLE IF EXISTS sala;
+
+      DROP TABLE IF EXISTS funcionamento;
+
       DROP TABLE IF EXISTS hospital;
 
-      CREATE TABLE hospital ( id serial PRIMARY KEY, nome VARCHAR(50) NOT NULL, telefone VARCHAR(13), cidade VARCHAR(50) NOT NULL, endereco VARCHAR(70), email VARCHAR(50) UNIQUE NOT NULL, senha VARCHAR(50) NOT NULL);
+      CREATE TABLE hospital ( id serial PRIMARY KEY, nome VARCHAR(100) NOT NULL, telefone VARCHAR(13), cidade VARCHAR(50) NOT NULL, endereco VARCHAR(70), email VARCHAR(50) UNIQUE NOT NULL, senha VARCHAR(50) NOT NULL);
       INSERT INTO hospital ( nome, telefone, cidade, endereco, email, senha) VALUES ('Nossa Senhora', '51998388868', 'Camaquã', 'R. Cel, R. Cristóvão Gomes de Andrade, 665, Camaquã - RS, 96180-000', 'nossasenhora@gmail.com', '0000');
       INSERT INTO hospital ( nome, telefone, cidade, endereco, email, senha) VALUES ('Santa Casa de Misericórdia', '53998300068', 'Pelotas', 'Praça Piratinino de Almeida, 53 - Centro', 'santacasa@gmai.com', '1111');
       
       DROP TABLE IF EXISTS doador;
       CREATE TABLE doador ( cpf VARCHAR(15) NOT NULL PRIMARY KEY, nome VARCHAR(50) NOT NULL, tipo_sangue VARCHAR(3) NOT NULL, telefone VARCHAR(13), email VARCHAR(50) UNIQUE NOT NULL, senha VARCHAR(50) NOT NULL, qtd_doacoes INTEGER default 0);
-      INSERT INTO doador ( cpf, nome, tipo_sangue, telefone, email, senha ) VALUES ( '03329452003', 'Darlei Matheus Schmegel', 'O+', '5189007766', 'darlei@gmail.com', '0000');
-      INSERT INTO doador ( cpf, nome, tipo_sangue, telefone, email, senha ) VALUES ( '03969000033', 'Bernardo Ribeiro Beling', 'O-', '53981012573', 'bernardo@gmail.com', 'senha');    
+      INSERT INTO doador ( cpf, nome, tipo_sangue, telefone, email, senha ) 
+        VALUES 
+          ( '03329354003', 'Darlei Matheus Schmegel', 'O+', '5189007766', 'darlei@gmail.com', '0000');
+      INSERT INTO doador ( cpf, nome, tipo_sangue, telefone, email, senha ) 
+        VALUES 
+          ( '03969000033', 'Bernardo Ribeiro Beling', 'O-', '53981012573', 'bernardo@gmail.com', 'senha');    
       
       CREATE TABLE funcionario ( 
         ssn VARCHAR(6) NOT NULL PRIMARY KEY, 
@@ -85,9 +94,102 @@ function queryDatabase() {
       );
 
       INSERT INTO vinculacao (id, cpf) 
-        VALUES (1,'03329452003');
+        VALUES (1,'03329354003');
       INSERT INTO vinculacao (id, cpf) 
         VALUES (2,'03969000033');
+
+      CREATE TABLE  sala ( 
+        numero INTEGER NOT NULL,
+        id_hospital INTEGER NOT NULL,
+
+        PRIMARY KEY (numero, id_hospital),
+        FOREIGN KEY (id_hospital) REFERENCES hospital (id)
+          ON DELETE CASCADE
+      );
+
+      INSERT INTO sala( numero, id_hospital) 
+        VALUES
+          (1, 1),
+          (2,1),
+          (3,1),
+          (1,2),
+          (2,2),
+          (3,2);
+          
+      CREATE TABLE  funcionamento ( 
+        id serial PRIMARY KEY,
+        dia_semana VARCHAR(15) NOT NULL,
+        hora_inicio time NOT NULL,
+        hora_fim time NOT NULL
+      );
+
+      INSERT INTO funcionamento ( dia_semana, hora_inicio, hora_fim) 
+        VALUES
+          ('segunda', '13:00','13:59'),
+          ('segunda', '14:00','14:59'),
+          ('segunda', '15:00','15:59'),
+          ('segunda', '16:00','16:59'),
+          ('segunda', '17:00','17:59'),
+          ('terca', '13:00','13:59'),
+          ('terca', '14:00','14:59'),
+          ('terca', '15:00','15:59'),
+          ('terca', '16:00','16:59'),
+          ('terca', '17:00','17:59');
+      
+      CREATE TABLE sala_possui_funcionamento  ( 
+        numero_sala INTEGER NOT NULL,
+        id_hospital INTEGER NOT NULL,
+        id_funcionamento INTEGER NOT NULL,
+
+        PRIMARY KEY (numero_sala, id_hospital, id_funcionamento),
+        FOREIGN KEY (numero_sala,id_hospital) REFERENCES sala (numero,id_hospital)
+          ON DELETE CASCADE,
+        FOREIGN KEY (id_funcionamento) REFERENCES funcionamento (id)
+          ON DELETE CASCADE
+      ); 
+      
+      INSERT INTO sala_possui_funcionamento 
+        ( numero_sala , id_hospital, id_funcionamento)
+        VALUES
+          (1,2,1),
+          (1,2,2),
+          (1,2,3),
+          (1,2,4),
+          (1,2,5),
+          (2,2,6),
+          (2,2,7),
+          (2,2,8),
+          (2,2,9),
+          (2,2,10),
+          
+          (3,2,1),
+          (3,2,2),
+          (3,2,3),
+
+          (3,2,5),
+          (3,2,6),
+          (3,2,7),
+
+          (1,1,1),
+          (1,1,2),
+          (1,1,3),
+          (1,1,4),
+          (1,1,5),
+          (2,1,6),
+          (2,1,7),
+          (2,1,8),
+          (2,1,9),
+          (2,1,10),
+          
+          (3,1,1),
+          (3,1,2),
+          (3,1,3),
+
+          (3,1,5),
+          (3,1,6),
+          (3,1,7)
+          ;
+        
 
   `;
 

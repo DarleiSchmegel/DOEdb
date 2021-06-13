@@ -1,10 +1,10 @@
-import Head from 'next/head'
+
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 // formDonationRegistration 
 import styles from '../styles/components/FormDonationRegistration.module.css'
 
-
+import  { api }  from "../services/api";
 
 export function FormDonationRegistration() {
   const router = useRouter();
@@ -22,8 +22,26 @@ export function FormDonationRegistration() {
     console.log(name, CPF, bloodType)
 
     //Lógica pra iserir na tabela de usuários aqui
+    try {
+      //const { data } = await api.get("/donors");
+      const response = await api.post("/donors/register",{
+        cpf: CPF,
+        nome: name,
+        tipo_sangue: bloodType,
+        telefone: phone,
+        id_hospital: hospital,
+        email,
+        senha: password,
+      });
+      console.log("Response",response.data);
+      alert(response.data.message)
+      
+      router.push('/admin/donor/dashboard')
+    } catch (error) {
+      console.log(error)
+      alert("Ocorreu um ao fazer o cadastro");
+    }
 
-    router.push('/admin/donor/dashboard')
   
   
   }
@@ -68,7 +86,7 @@ export function FormDonationRegistration() {
                 id="hospital"
                 placeholder="Hospital onde doar"
                 value={hospital}
-                onChange={event => setPhone(event.target.value)}
+                onChange={event => setHospitar(event.target.value)}
 
               />
 

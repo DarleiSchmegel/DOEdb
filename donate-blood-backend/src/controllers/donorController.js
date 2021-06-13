@@ -3,9 +3,9 @@ import { Client } from "../database/index.js";
 class DonorController {
   
   async register(req, res){
-   const { cpf, nome, tipo_sangue, telefone, email, senha } = req.body;
+   const { cpf, nome, tipo_sangue, telefone, id_hospital, email, senha } = req.body;
     try {
-      const query = `INSERT INTO doador 
+      let query = `INSERT INTO doador 
         ( cpf, nome, tipo_sangue, telefone, email, senha ) 
         VALUES 
           ( '${cpf}',
@@ -18,8 +18,28 @@ class DonorController {
     console.log(query);
 
     await Client.query(query)
+
+    query = `INSERT INTO vinculacao (id, cpf) 
+        VALUES (${id_hospital},'${cpf}');`
+
+    await Client.query(query)
     res.status(200).send({message: 'Cadastro realizado com sucesso.'});
     } catch (error) {
+      
+      try {
+        let query = `DELETE FROM doador
+        WHERE cpf = '${cpf}';`
+        await Client.query(query)
+
+        query = `DELETE FROM vinculacao
+        WHERE cpf = '${cpf}' AND id = '${id_hospital}' ;`
+        await Client.query(query)
+
+      } catch (error) {
+        
+      }
+
+
       console.log(error)
       res.status(500).send({message: 'Falha ao realizar registro.'})
     }

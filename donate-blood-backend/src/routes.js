@@ -29,6 +29,7 @@ router.post("/hospital/funcionario/register", funcionarioController.register);
 router.post("/doacao/register", doacaoController.store);
 router.get("/doacao", doacaoController.index);
 router.get("/doacao/:key/:value", doacaoController.show);
+router.put("/doacao", doacaoController.update);
 
 router.get("/", (req, res) => {
     res.status(200).send({

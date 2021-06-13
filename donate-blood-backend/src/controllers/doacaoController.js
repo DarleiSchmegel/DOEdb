@@ -43,7 +43,27 @@ class DoacaoController {
       console.log(error)
       res.status(500).send({message: 'Falha ao carregar Doacão/Doaçoes.'})
     }
+  }
+  async update(req, res){
+    //console.log(req.params.key, " = ",req.params.value);
+    const { key, value, id_doacao} = req.body;
 
+    try {
+     
+      let query = `UPDATE doacao SET ${key}=${value} WHERE id_doacao=${id_doacao};`
+      console.log(query)
+      await Client.query(query);
+      //console.log(query);
+      query = `SELECT * FROM doacao WHERE id_doacao='${id_doacao}';`;
+      
+      const data = (await Client.query(query)).rows
+      
+      console.log(data);
+      res.status(200).send(data);
+    } catch (error) {
+      console.log(error)
+      res.status(500).send({message: 'Falha ao registrar quantidade se sangue doada.'})
+    }
   }
 
   async index(req, res){

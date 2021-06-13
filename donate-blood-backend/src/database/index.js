@@ -25,7 +25,9 @@ Client.connect(err => {
 });
 
 function queryDatabase() {
+  /*sql*/
   const query = `
+      DROP TABLE IF EXISTS doacao;
       DROP TABLE IF EXISTS vinculacao;
       DROP TABLE IF EXISTS funcionario;
       DROP TABLE IF EXISTS estoque;
@@ -189,7 +191,29 @@ function queryDatabase() {
           (3,1,6),
           (3,1,7)
           ;
+      CREATE TABLE doacao (
+        id_doacao serial PRIMARY KEY,
+        tipo_sangue VARCHAR(3) NOT NULL,
+        qtde_doado NUMERIC ( 10 , 3 ) default 0,
+        _data DATE NOT NULL,
+        hora time NOT NULL,
+        numero_sala INTEGER NOT NULL,
+        id_hospital INTEGER NOT NULL,
+        cpf_doador VARCHAR(15) NOT NULL,
+        ssn_funcionario VARCHAR(6) NOT NULL,
+
+        FOREIGN KEY (numero_sala,id_hospital) REFERENCES sala (numero,id_hospital)
+          ON DELETE CASCADE,
+        FOREIGN KEY (cpf_doador) REFERENCES doador (cpf)
+          ON DELETE CASCADE,
+        FOREIGN KEY (ssn_funcionario) REFERENCES funcionario (ssn)
+          ON DELETE CASCADE
+      );
         
+      INSERT INTO doacao 
+        ( tipo_sangue, _data, hora, numero_sala , id_hospital, cpf_doador, ssn_funcionario)
+          VALUES
+            ( 'o+', '2021-06-17','13:00:00',1, 1, '03329354003', '123456');
 
   `;
 

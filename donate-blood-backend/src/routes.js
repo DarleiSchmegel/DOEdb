@@ -6,10 +6,12 @@ const router = Router();
 import { DonorController } from "./controllers/donorController.js";
 import { HospitalController } from "./controllers/hospitalController.js";
 import { FuncionarioController } from "./controllers/funcionarioController.js";
+import { DoacaoController } from "./controllers/doacaoController.js";
 
 const donorController = new DonorController();
 const hospitalController = new HospitalController();
 const funcionarioController = new FuncionarioController();
+const doacaoController = new DoacaoController();
 
 router.post("/donors/register", donorController.register);
 router.get("/donors/login", donorController.login);
@@ -23,6 +25,10 @@ router.get("/hospital/login", hospitalController.login);
 router.get("/hospital/funcionario", funcionarioController.index);
 router.get("/hospital/funcionario/:key/:value", funcionarioController.show);
 router.post("/hospital/funcionario/register", funcionarioController.register);
+
+router.post("/doacao/register", doacaoController.store);
+router.get("/doacao", doacaoController.index);
+router.get("/doacao/:key/:value", doacaoController.show);
 
 router.get("/", (req, res) => {
     res.status(200).send({

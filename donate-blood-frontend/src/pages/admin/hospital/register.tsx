@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 //import { useHistory, Link } from 'react-router-dom';
-import {useRouter} from 'next/router'
-import Link from 'next/link'
-import styles from '../../../styles/pages/Login.module.css'
+import {useRouter} from 'next/router';
+import Link from 'next/link';
+import styles from '../../../styles/pages/Login.module.css';
+
+import { api } from '../../../services/api';
 // export default function Login({ history }) 
 const Register: React.FC = () => {
   //const history = useHistory();
@@ -18,9 +20,25 @@ const Register: React.FC = () => {
   async function handleSubmit(event: any) {
     event.preventDefault();
 
-    //Lógica para adcionar um novo hospital aqui
-
-    router.push('/admin/hospital/dashboard')
+    //Lógica pra iserir na tabela de usuários aqui
+    try {
+      
+      const response = await api.post("/hospital/register",{
+        nome: name,
+        telefone: phone,
+        cidade: city,
+        endereco: address,
+        email,
+        senha: password,
+      });
+      console.log("Response",response.data);
+      alert(response.data.message)
+      
+      router.push('/admin/hospital/dashboard')
+    } catch (error) {
+      console.log(error.response.data.message)
+      alert(`Ocorreu um ao fazer o cadastro : ${ error.response.data.message }`);
+    }
   }
 
   return (

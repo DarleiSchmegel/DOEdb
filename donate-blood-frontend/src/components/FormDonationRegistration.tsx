@@ -41,9 +41,6 @@ export function FormDonationRegistration() {
       console.log(error)
       alert("Ocorreu um ao fazer o cadastro");
     }
-
-  
-  
   }
   return (
     <div className={styles.formDonationRegistration}>

@@ -22,7 +22,8 @@ class HospitalController {
       
      } catch (error) {
        console.log(error)
-       res.status(500).send({message: 'Falha ao carregar Doadores.'})
+       //res.status(400).json({error})
+       res.status(400).send({message: `Falha ao registrar Hospital. \n ${ error }`})
      }
    }
 

@@ -62,7 +62,7 @@ class DoacaoController {
       res.status(200).send(data);
     } catch (error) {
       console.log(error)
-      res.status(500).send({message: 'Falha ao registrar quantidade se sangue doada.'})
+      res.status(400).send({message: 'Falha ao registrar quantidade se sangue doada.'})
     }
   }
 

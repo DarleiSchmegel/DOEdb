@@ -15,9 +15,6 @@
   - Inicie o container PostgreSQL do nosso projeto usando esta imagem Docker.
     - docker run --name DOEdb -e POSTGRES_PASSWORD=DOEdb -p 5432:5432 -d postgres
 
-  - Criar nosso container postegres
-    - docker run --name DOEdb -e POSTGRES_PASSWORD=DOEdb -p 5432:5432 -d postgres
-
   - Use *docker start/stop DOEdb*
 
   - Para entrar no conatiner criado

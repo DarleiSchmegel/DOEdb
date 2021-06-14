@@ -5,13 +5,13 @@ const Donor: React.FC = () => {
 
     <>
       {/* <Navbar/> */}
-      <section>
+      <div>
         <img 
           className="logo" 
           src="/logo.png" 
           alt="Imagem de DOE"
         />
-      </section>
+      </div>
     </>
 
   )

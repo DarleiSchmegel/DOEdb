@@ -1,0 +1,60 @@
+.formDashboard {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 25px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  background-color: #042331;
+
+  padding: 40px 64px;
+  border-radius: 10px; 
+  margin-top: 100px;
+}
+
+.formDashboard label {
+  color: white;
+  opacity: 60%;
+}
+
+.formDashboard input::-webkit-input-placeholder {
+  color: white;
+  opacity: 50%;
+}
+
+.formDashboard input:-moz-placeholder { /* Firefox 18- */
+  color: white; 
+  opacity: 50%; 
+}
+
+.formDashboard input::-moz-placeholder {  /* Firefox 19+ */
+  color: white;
+  opacity: 50%;  
+}
+
+.formDashboard input:-ms-input-placeholder {  
+  color: white; 
+  opacity: 50%; 
+}
+
+.formDashboard input, .formDashboard select {
+  width: 400px;
+  height: 35px;
+  background: #2E384D;
+  color: white;
+
+  width: 100%;
+
+  /* espaçamentos*/
+  margin-bottom: 4px;
+
+  padding: 2px 16px;
+
+  /* bordas */
+  border-radius: 4px;
+  border: 1px #ffffff88 solid;
+}
+/* .formDoadoresRegistration select {
+    opacity: 60%;
+} */

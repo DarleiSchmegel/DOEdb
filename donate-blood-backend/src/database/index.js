@@ -38,7 +38,7 @@ function queryDatabase() {
 
       DROP TABLE IF EXISTS hospital;
 
-      CREATE TABLE hospital ( id serial PRIMARY KEY, nome VARCHAR(100) NOT NULL, telefone VARCHAR(13), cidade VARCHAR(50) NOT NULL, endereco VARCHAR(70), email VARCHAR(50) UNIQUE NOT NULL, senha VARCHAR(50) NOT NULL);
+      CREATE TABLE hospital ( id serial PRIMARY KEY, nome VARCHAR(100) NOT NULL, telefone VARCHAR(13), cidade VARCHAR(50) NOT NULL, endereco VARCHAR(150), email VARCHAR(50) UNIQUE NOT NULL, senha VARCHAR(50) NOT NULL);
       INSERT INTO hospital ( nome, telefone, cidade, endereco, email, senha) VALUES ('Nossa Senhora', '51998388868', 'Camaquã', 'R. Cel, R. Cristóvão Gomes de Andrade, 665, Camaquã - RS, 96180-000', 'nossasenhora@gmail.com', '0000');
       INSERT INTO hospital ( nome, telefone, cidade, endereco, email, senha) VALUES ('Santa Casa de Misericórdia', '53998300068', 'Pelotas', 'Praça Piratinino de Almeida, 53 - Centro', 'santacasa@gmai.com', '1111');
       

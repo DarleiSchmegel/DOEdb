@@ -1,0 +1,19 @@
+.containerCards {
+  margin-top: 30px;
+  /* background: white; */
+}
+.containerCards .cards {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
+
+.containerCards .cards .card {
+  padding: 20px;
+  background: #042331;
+  border-radius: 8px;
+}
+.containerCards .cards .card p {
+  color: white;
+  padding: 4px;
+}

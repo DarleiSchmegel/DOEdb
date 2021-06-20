@@ -68,21 +68,21 @@ function queryDatabase() {
       
       CREATE TABLE  estoque ( 
         id serial PRIMARY KEY,
-        "o+"  NUMERIC ( 10 , 3 ) default 0, 
-        "o-"  NUMERIC ( 10 , 3 ) default 0, 
-        "a+"  NUMERIC ( 10 , 3 ) default 0,  
-        "a-"  NUMERIC ( 10 , 3 ) default 0,  
-        "ab+" NUMERIC ( 10 , 3 ) default 0,  
-        "b+"  NUMERIC ( 10 , 3 ) default 0,  
-        "b-"  NUMERIC ( 10 , 3 ) default 0,
+        "O+"  NUMERIC ( 10 , 3 ) default 0, 
+        "O-"  NUMERIC ( 10 , 3 ) default 0, 
+        "A+"  NUMERIC ( 10 , 3 ) default 0,  
+        "A-"  NUMERIC ( 10 , 3 ) default 0,  
+        "aAB+" NUMERIC ( 10 , 3 ) default 0,  
+        "B+"  NUMERIC ( 10 , 3 ) default 0,  
+        "B-"  NUMERIC ( 10 , 3 ) default 0,
         id_hospital INTEGER NOT NULL,
         FOREIGN KEY (id_hospital) REFERENCES hospital (id)
           ON DELETE CASCADE
       );
-      INSERT INTO estoque ("o+", "o-", id_hospital) 
+      INSERT INTO estoque ("O+", "O-", id_hospital) 
         VALUES ( 0.300, 1.590, 1);
 
-      INSERT INTO estoque ("o+", "a-", id_hospital) 
+      INSERT INTO estoque ("O+", "A-", id_hospital) 
         VALUES ( 0.300, 2.590, 2);
 
       CREATE TABLE vinculacao (
@@ -213,7 +213,7 @@ function queryDatabase() {
       INSERT INTO doacao 
         ( tipo_sangue, _data, hora, numero_sala , id_hospital, cpf_doador, ssn_funcionario)
           VALUES
-            ( 'o+', '2021-06-17','13:00:00',1, 1, '03329354003', '123456');
+            ( 'O+', '2021-06-17','13:00:00',1, 1, '03329354003', '123456');
 
   `;
 

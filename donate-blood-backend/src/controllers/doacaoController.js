@@ -26,7 +26,34 @@ class DoacaoController {
       res.status(500).send({message: 'Falha ao cadastrar doação.'})
     }
   }
+  async collect (req, res) {//qtde_doado
+    const { id_doacao, tipo_sangue, id_hospital, cpf_doador } = req.body.coleta;
+    const { value } = req.body; 
+    console.log(req.body);
+    try {
 
+     
+      let query = `UPDATE doacao SET qtde_doado='${value}' 
+                      WHERE id_doacao='${id_doacao}';`
+      console.log(query);
+
+      await Client.query(query);
+      query = `UPDATE estoque SET "${tipo_sangue}"='${value}' 
+                      WHERE id_hospital='${id_hospital}';`
+      console.log(query);
+      await Client.query(query);
+
+      query = `UPDATE doador SET qtd_doacoes = qtd_doacoes + 1 
+                      WHERE cpf='${cpf_doador}';`
+      console.log(query);
+      await Client.query(query);
+      
+
+    res.status(200).send({message: 'coleta realizado com sucesso.'});
+    } catch (error) {
+      console.log(error)
+      res.status(500).send({message: 'Falha ao realizar coleta.'})
+    }  }
 
   async show(req, res){
     console.log(req.params.key, " = ",req.params.value);
@@ -67,15 +94,16 @@ class DoacaoController {
   }
 
   async index(req, res){
-   
+    const { id_hospital } = req.params;
     try {
-      const query = 'SELECT * FROM doacao;';
+      const query = `SELECT * FROM doacao WHERE id_hospital=${id_hospital};`;
     
       const data = (await Client.query(query)).rows
       
       console.log(data);
       res.status(200).send(data);
     } catch (error) {
+      console.log(error)
       res.status(500).send({message: 'Falha ao carregar Doações.'})
     }
   }

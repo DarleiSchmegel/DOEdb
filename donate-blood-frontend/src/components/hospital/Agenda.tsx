@@ -34,7 +34,8 @@ const Agenda: React.FC = () => {
   useEffect(() => {
     async function getItems() {
       try {
-        const { data } = await api.get("/doacao");
+        const { data } = await api.get(`/doacao/${localStorage.getItem("hospital_id")}`);
+
 
         setItems(data);
         
@@ -55,6 +56,9 @@ const Agenda: React.FC = () => {
       {/* <div >className={styles.donationRegistration} */}
       <div>
         <div className={styleCardes.containerCards}>
+          {items.length === 0 && (
+            <h1>Não há nada na agenda.</h1>
+          )}
           <div className={styleCardes.cards}>
             {items.map((doador) => (
               <div key={doador.id_doacao} className={styleCardes.card}>

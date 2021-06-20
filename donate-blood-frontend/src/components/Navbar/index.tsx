@@ -17,6 +17,12 @@ type Props = {
 const Navbar:  React.FC = () => {
 
   const {whatIsOpen, setMenuSelected} = useDasboardMenu();
+  const [nameHospital, setNameHospital] = useState('');
+
+  useEffect(() => {
+
+      setNameHospital(localStorage.getItem('hospital_name'))
+  }, []);
 
   function handleClick(menuClicked:string) {
     setMenuSelected(menuClicked)
@@ -33,7 +39,7 @@ const Navbar:  React.FC = () => {
         <header>
           {/* <img src={imgDarlei} alt=""/> */}
           <h3>
-            Darlei M. Schmegel
+            {nameHospital}
           </h3>
         </header>
         <ul id="ul-navbar">

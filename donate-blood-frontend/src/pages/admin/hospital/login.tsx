@@ -4,15 +4,52 @@ import {useRouter} from 'next/router'
 import Link from 'next/link'
 import styles from '../../../styles/pages/Login.module.css'
 // export default function Login({ history }) 
+
+import { api } from "../../../services/api";
+
+interface ItemHospital {
+  id: string,
+  nome: String,
+  cidade: String,
+  endereco: String,
+  telefone: String,
+  email: String,
+  senha: String,
+  qtd_doacoes: String
+}
 const Login: React.FC = () => {
   //const history = useHistory();
   const router = useRouter();
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState('');
 
   async function handleSubmit(event: any) {
     event.preventDefault();
-    router.push('/admin/hospital/dashboard')
+    //<ItemHospital[]>
+    console.log(email)
+  console.log(password)
+  const headers = {
+    email,
+    senha:password
+  };
+    try {
+      const  response = await api.get("/hospital/login",{
+        headers
+      });
+      console.log(response.data[0])
+      console.log("storage",response.data[0].id)
+      localStorage.setItem('hospital_id', response.data[0].id);
+      localStorage.setItem('hospital_name', response.data[0].nome);
+      router.push('/admin/hospital/dashboard');
+
+    } catch (error) {
+      console.log("error",error.response.data.message);
+      alert(error.response.data.message);
+      //console.log()
+    }
+
+
+    //router.push('/admin/hospital/dashboard')
 
 
   }

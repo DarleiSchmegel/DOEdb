@@ -28,7 +28,9 @@ class HospitalController {
    }
 
    async login(req, res){
-    const { email, senha } = req.body;
+    const { email, senha } = req.headers;
+    //console.log("Req",req)
+    console.log("Header",req.headers)
      try {
       
         const query = `SELECT id, nome, telefone, cidade, endereco, email FROM hospital WHERE email='${email}' AND senha='${senha}';`;
@@ -36,16 +38,21 @@ class HospitalController {
 
         const data = (await Client.query(query)).rows
         
-        if( data .length === 0 )
-          return  res.status(400).json({message: 'Usuário ou senha incorretos.'});
+        console.log(data);
+        if( data.length === 0 ){
+          console.log("entrou")
+          res.status(400).send({message: 'Usuário ou senha incorretos.'});
+          //next();
+        }else{
+          res.status(200).send(data);
+
+        }
         
 
-        console.log(data);
-        res.status(200).send(data);
       
      } catch (error) {
        console.log(error)
-       res.status(500).send({message: 'Falha ao carregar Doadores.'})
+       res.status(400).send({message: 'Falha ao carregar Doadores.'})
      }
    }
 };
